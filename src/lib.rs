@@ -1,5 +1,5 @@
 #[cfg(feature = "derive")]
-pub use id_wrapper_macros::{generate_overwrites, overwrite, skip};
+pub use derive_overwrites::{generate_overwrites, overwrite, skip};
 
 pub mod prelude {
     pub use super::{WithId, generate_overwrites, overwrite, skip};

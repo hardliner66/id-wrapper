@@ -1,24 +1,15 @@
-[workspace.package]
-version = "0.2.0"
-edition = "2024"
-repository = "https://github.com/hardliner66/id-wrapper"
-
 [package]
 name = "id-wrapper"
 description = "A small generic wrapper to add a unique identifier to a struct without modifying it"
 license-file = "LICENSE"
-repository.workspace = true
-version.workspace = true
-edition.workspace = true
+version = "0.2.0"
+edition = "2024"
+repository = "https://github.com/hardliner66/id-wrapper"
 
 [dependencies]
 nanoid = "0.4.0"
-id-wrapper-macros = { version = "0.2.0", path = "id-wrapper-macros", optional = true }
+derive-overwrites = { version = "0.2.0", optional = true }
 
 [features]
 default = ["derive"]
-derive = ["dep:id-wrapper-macros"]
-
-[workspace]
-members = ["id-wrapper-macros"]
-resolver = "3"
+derive = ["dep:derive-overwrites"]
