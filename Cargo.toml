@@ -2,7 +2,7 @@
 name = "id-wrapper"
 description = "A small generic wrapper to add a unique identifier to a struct without modifying it"
 license-file = "LICENSE"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2024"
 repository = "https://github.com/hardliner66/id-wrapper"
 
