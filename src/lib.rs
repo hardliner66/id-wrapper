@@ -1,3 +1,10 @@
+#[cfg(feature = "derive")]
+pub use id_wrapper_macros::{generate_overwrites, overwrite, skip};
+
+pub mod prelude {
+    pub use super::{WithId, generate_overwrites, overwrite, skip};
+}
+
 use nanoid::nanoid;
 
 use std::{
@@ -11,8 +18,7 @@ pub struct WithId<T> {
 }
 
 impl<T> WithId<T> {
-    pub fn new(inner: T) -> Self
-    {
+    pub fn new(inner: T) -> Self {
         let id = format!("{}::{}", std::any::type_name::<T>(), nanoid!());
         Self { id, inner }
     }

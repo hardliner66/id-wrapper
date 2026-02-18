@@ -1,7 +1,24 @@
-[package]
-name = "id-thingy"
+[workspace.package]
 version = "0.1.0"
 edition = "2024"
+repository = "https://github.com/hardliner66/id-wrapper"
+license-file = "LICENSE"
+
+[package]
+name = "id-wrapper"
+repository.workspace = true
+version.workspace = true
+edition.workspace = true
+license-file.workspace = true
 
 [dependencies]
-with-id = { version = "0.1.0", path = "with-id" }
+nanoid = "0.4.0"
+id-wrapper-macros = { version = "0.1.0", path = "id-wrapper-macros", optional = true }
+
+[features]
+default = ["derive"]
+derive = ["dep:id-wrapper-macros"]
+
+[workspace]
+members = ["id-wrapper-macros"]
+resolver = "3"

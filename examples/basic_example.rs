@@ -1,11 +1,15 @@
-use with_id::WithId;
+use id_wrapper::prelude::*;
 
 #[derive(Clone, Debug)]
 struct MyStruct {
     pub count: usize,
 }
 
+// Generate overwrites for MyStruct
+#[generate_overwrites]
 impl MyStruct {
+    // Mark functions that should not be overwritten with #[skip]
+    #[skip]
     pub fn increment(&mut self) {
         self.count += 1;
     }
@@ -15,24 +19,29 @@ impl MyStruct {
     }
 }
 
-trait MyStructOverwrites {
-    fn increment_by(&mut self, amount: usize);
-}
+// // Alternatively, use #[generate_overwrites(all = false)] to disable all overwrites by default
+// #[generate_overwrites(all = false)]
+// impl MyStruct {
+//     pub fn increment(&mut self) {
+//         self.count += 1;
+//     }
+
+//     // and explicitly include the functions you want with #[overwrite]
+//     #[overwrite]
+//     pub fn increment_by(&mut self, amount: usize) {
+//         self.count += amount;
+//     }
+// }
 
 // By specifying the type parameter, we can create functions of the same
 // name as the original, which works on the WithId version instead of
 // the inner type
 impl MyStructOverwrites for WithId<MyStruct> {
-    // ATTENTION!
-    // This is somewhat error prone. It's quite easy to get the names
-    // out of sync or accidentially call yourself instead of the inner
-    // function.
-    //
-    // It might be possible to add a proc macro to make sure
-    // the function actually exists in the inner type, but I'd have to
-    // investigate further.
     fn increment_by(&mut self, amount: usize) {
-        println!("Incrementing id '{}' by amount: {amount}", self.id());
+        println!(
+            "OVERWRITTEN: Incrementing id '{}' by amount: {amount}",
+            self.id()
+        );
         self.inner.increment_by(amount);
     }
 }
