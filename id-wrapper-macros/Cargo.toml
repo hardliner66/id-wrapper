@@ -1,5 +1,7 @@
 [package]
 name = "id-wrapper-macros"
+description = "An attribute macro to create a trait from an impl block, to allow overwriting functions in a way that is compatible with using an external wrapper struct"
+license-file = "../LICENSE"
 repository.workspace = true
 version.workspace = true
 edition.workspace = true

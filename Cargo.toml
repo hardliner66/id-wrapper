@@ -2,14 +2,14 @@
 version = "0.1.0"
 edition = "2024"
 repository = "https://github.com/hardliner66/id-wrapper"
-license-file = "LICENSE"
 
 [package]
 name = "id-wrapper"
+description = "A small generic wrapper to add a unique identifier to a struct without modifying it"
+license-file = "LICENSE"
 repository.workspace = true
 version.workspace = true
 edition.workspace = true
-license-file.workspace = true
 
 [dependencies]
 nanoid = "0.4.0"
